@@ -14,11 +14,17 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
   s.requires_arc = true
   
-  s.xcconfig = { "OTHER_LINK_FLAG" => '$(inherited) -ObjC' }
-  
-  
+    # 是否使用静态库。如果podfile指明了use_frameworks!命令，但是pod仓库需要使用静态库则需要设置
+  s.static_framework = true
+
+    
+    
+  # pod库的源文件
   s.source_files  = "src/ios/*.{h,m}","src/ios/**/*.{h,m}"
+  # pod库暴露给用户工程的头文件
   s.public_header_files = 'src/ios/Public/*.h'
+  
+  s.dependency "FDFullscreenPopGesture"
 
 
 end
